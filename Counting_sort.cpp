@@ -2,32 +2,38 @@
 #include<bits/stdc++.h>
 using namespace std;
 #define ll              long long
-#define MX              1000000007
-#define all(n)          n.begin(), n.end()
-#define sz(n)           n.size()
-#define en              "\n"
 
-ll f[1100000], Narr[1100000];
-void Counting_sort(std::vector<ll> &v){
-    for(ll i=0; i<sz(v); i++) f[v[i]]++;
-    // ll tmp = f[0];
-    for(ll i=1; i<=*max_element(all(v)); i++){
-        f[i] = f[i-1] + f[i];
+ll mx;
+void Counting_sort(ll A[],ll B[],ll n)    
+{
+    ll f[mx+1],t;
+    for(ll i=0;i<=mx;i++) f[i] = 0;
+
+    for(ll i=0;i<n;i++){
+        t = A[i];
+        f[t]++;         
     }
-    for(ll i=0; i<sz(v); i++){
-        ll rem = v[i];
-        Narr[f[rem]] = rem;
-        f[v[i]]--; 
+    
+    for(ll i=1;i<=mx;i++)
+        f[i] = f[i]+f[i-1];            
+
+    for(ll i=0;i<n;i++){
+        t = A[i];
+        B[f[t]] = t;          
+        f[t]=f[t]-1;        
     }
 }
-
 int main()
 {
-    ll n;
-    cin >> n;
-    std::vector<ll> v(n); for(ll i=0; i<n;i++) cin >> v[i];
-    Counting_sort(v);
-    for(ll i=1; i<=n; i++) cout << Narr[i] << " ";
-    cout << en;
+    ll n; cin >> n;
+    ll A[n+1], B[n+1];
+    for(ll i=0; i<n; i++){
+        cin >> A[i];
+        mx = max(mx , A[i]);
+    } 
+    Counting_sort(A, B, n);
+    for(ll i=1; i<=n; i++) cout << B[i] << " ";
+    cout << endl;
+
     return 0;
 }
