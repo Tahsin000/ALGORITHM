@@ -25,7 +25,7 @@ ll LOWER(std::vector<ll> v , ll q){
         else r = mid;
     }
     cout << "LOWER_BOUND :  ";
-    cout << r << en;
+    cout << r+1 << en;
 }
 int main()
 {
