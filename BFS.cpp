@@ -41,3 +41,27 @@ int main()
     for(ll i=1; i<=node; i++) cout << "Distance of " << i << " is " << dis[i] << endl;
     return 0;
 }
+/*
+        ** input **
+        7 9
+        1 2
+        1 3
+        1 7
+        2 3
+        3 7
+        2 4
+        4 5
+        3 6
+        5 6
+        1
+        
+        ** output **
+        0
+        1
+        1
+        2
+        3
+        2
+        1
+
+*/
